@@ -68,13 +68,25 @@
             color: #333;
             display: inline-block;
         }
+        .back-arrow {
+                font-size: 1.8em;
+                color: #333;
+                text-decoration: none;
+                margin-right: 20px;
+                cursor: pointer;
+            }
+            .back-arrow:hover {
+                color: #ec4899;
+            }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
+        <a href="dashboard.jsp" class="back-arrow">⤺</a>
+        <div class="header">       
             <h1>Your Profile</h1>
         </div>
+        
         <form action="PersonalProfileServlet" method="post">
             <label>Full Name</label>
             <input type="text" name="name" required>

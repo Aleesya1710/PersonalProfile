@@ -1,16 +1,107 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<head>
+    <title>Personal Profile</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to bottom, #FFBFCB   0%, #FEE7E5  100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: #ffffffdd;
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .header h1 {
+            font-size: 2em;
+            letter-spacing: -0.5px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            background: #fafafa;
+            font-size: 1em;
+            margin-bottom: 15px;
+            transition: .2s;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #764ba2;
+            background: #fff;
+        }
+        input[type="submit"] {
+            padding: 14px;
+            background: #ED729E;
+            color: white;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: .2s;
+        }
+        label {
+            font-weight: 600;
+            font-size: 0.95em;
+            margin-bottom: 6px;
+            color: #333;
+            display: inline-block;
+        }
+        .back-arrow {
+                font-size: 1.8em;
+                color: #333;
+                text-decoration: none;
+                margin-right: 20px;
+                cursor: pointer;
+            }
+            .back-arrow:hover {
+                color: #ec4899;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="dashboard.jsp" class="back-arrow">⤺</a>
+        <div class="header">       
+            <h1>Your Profile</h1>
+        </div>
+        
+        <form action="PersonalProfileServlet" method="post">
+            <label>Full Name</label>
+            <input type="text" name="name" required>
+            <label>Student ID</label>
+            <input type="text" name="studentId" required>
+            <label>Program</label>
+            <input type="text" name="program" required>
+            <label>Email Address</label>
+            <input type="email" name="email" required>
+            <label>Hobbies</label>
+            <input type="text" name="hobbies" placeholder="e.g., Reading, Gaming, Drawing">
+            <label>Self Introduction</label>
+            <textarea name="intro" required rows="4"></textarea>
+            <input type="submit" value="Submit Profile">
+        </form>
+    </div>
+</body>
 </html>

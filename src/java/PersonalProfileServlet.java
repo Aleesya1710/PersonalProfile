@@ -4,8 +4,13 @@
  * and open the template in the editor.
  */
 
+import ProfileBean.ProfileBean;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,15 +41,34 @@ public class PersonalProfileServlet extends HttpServlet {
                 String email = request.getParameter("email");
                 String hobbies = request.getParameter("hobbies");
                 String intro = request.getParameter("intro");
-
-                request.setAttribute("name", name);
-                request.setAttribute("studentId", studentId);
-                request.setAttribute("program", program);
-                request.setAttribute("email", email);
-                request.setAttribute("hobbies", hobbies);
-                request.setAttribute("intro", intro);
-
-                 request.getRequestDispatcher("PersonalProfile.jsp").forward(request, response);;
+                 
+                int id = Integer.parseInt(studentId);
+                
+                //4
+                ProfileBean profile = new ProfileBean();
+                profile.setStudentID(id);
+                profile.setName(name);
+                profile.setProgram(program);
+                profile.setEmail(email);
+                profile.setHobbies(hobbies);
+                profile.setIntro(intro);
+                
+                try{
+                    Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/studentProfiles", "app", "app");
+                    String query =  "insert into profiles(studentId, name, program, email, introduction, hobbies) values (?,?,?,?,?,?)";
+                    PreparedStatement ps = conn.prepareStatement(query);
+                    ps.setInt(1,profile.getStudentID());
+                    ps.setString(2, profile.getName());
+                    ps.setString(3, profile.getProgram());
+                    ps.setString(4, profile.getEmail());
+                    ps.setString(5, profile.getIntro());
+                    ps.setString(6, profile.getHobbies());
+                    ps.executeUpdate();
+                }catch(SQLException e){
+                     e.printStackTrace();
+                }
+                request.setAttribute("profile", profile);
+                 request.getRequestDispatcher("profile.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
