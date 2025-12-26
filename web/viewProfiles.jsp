@@ -193,7 +193,6 @@
                 <div class="spacer"></div>
             </div>
             
-            <!-- Content Card with Table -->
             <div class="content-card" style="padding-bottom: 10px; margin-bottom: 20px; ">
                 <div class="search-filter-bar">
                     <div class="search-box">

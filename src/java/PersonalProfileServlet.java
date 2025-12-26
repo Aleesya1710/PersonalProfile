@@ -44,7 +44,6 @@ public class PersonalProfileServlet extends HttpServlet {
                  
                 int id = Integer.parseInt(studentId);
                 
-                //4
                 ProfileBean profile = new ProfileBean();
                 profile.setStudentID(id);
                 profile.setName(name);
